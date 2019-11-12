@@ -1,0 +1,299 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MyPetstore</title>
+    <link rel="stylesheet" href="../../css/jquery-ui-1.12.1.custom/jquery-ui.min.css">
+    <link rel="stylesheet" href="../../css/form.css">
+
+</head>
+<body>
+<header>
+    <h1>CreativeFolk</h1>
+</header>
+
+<div id="BackLink">
+    <a href="/catalog/main">Return to Main Menu</a>
+</div>
+
+<div id="tabs">
+    <ul>
+        <li><a href="#tabs-1">Payment Details</a></li>
+        <li><a href="#tabs-2">Shipping Address</a></li>
+        <li><a href="#tabs-3">Order</a></li>
+    </ul>
+    <div id="tabs-1">
+        <div id="Catalog">
+            <form id="form1">
+                <table>
+                    <tr>
+                        <td>Card Type:</td>
+                        <td>
+                            <select name="cardType">
+                                <!--<s:iterator value="#session.cardList" var="card">-->
+                                    <option th:each="card : ${session.cardList}" th:value="${card}" th:text="${card}"/></option>
+                                <!--</s:iterator>-->
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Card Number:</td>
+                        <td><input type="text" th:value="${session.order.creditCard}" name="creditCard"/> * Use a fake
+                            number!</td>
+                    </tr>
+                    <tr>
+                        <td>Expiry Date (MM/YYYY):</td>
+                        <td><input type="text" th:value="${session.order.expiryDate}" name="expiryDate"/></td>
+                    </tr>
+                    <tr>
+                        <th colspan=2>Billing Address</th>
+                    </tr>
+
+                    <tr>
+                        <td>First name:</td>
+                        <td><input type="text" th:value="${session.order.billToFirstName}" name="billToFirstName"/></td>
+                    </tr>
+                    <tr>
+                        <td>Last name:</td>
+                        <td><input type="text" th:value="${session.order.billToLastName}" name="billToLastName"/></td>
+                    </tr>
+                    <tr>
+                        <td>Address 1:</td>
+                        <td><input size="40" type="text" th:value="${session.order.billAddress1}" name="billAddress1"/></td>
+                    </tr>
+                    <tr>
+                        <td>Address 2:</td>
+                        <td><input size="40" type="text" th:value="${session.order.billAddress2}" name="billAddress2"/></td>
+                    </tr>
+                    <tr>
+                        <td>City:</td>
+                        <td><input type="text" th:value="${session.order.billCity}" name="billCity"/></td>
+                    </tr>
+                    <tr>
+                        <td>State:</td>
+                        <td><input type="text" th:value="${session.order.billState}" name="billState"/></td>
+                    </tr>
+                    <tr>
+                        <td>Zip:</td>
+                        <td><input type="text" size="10" th:value="${session.order.billZip}" name="billZip"/></td>
+                    </tr>
+                    <tr>
+                        <td>Country:</td>
+                        <td><input type="text" size="15" th:value="${session.order.billCountry}" name="billCountry"/></td>
+                    </tr>
+
+                    <tr>
+                        <td colspan=2>
+                            <input type="checkbox" value="true" name="shippingAddressRequired" id="checkbox1"/>
+                            Ship to different address...
+                        </td>
+                    </tr>
+
+                </table>
+
+                <input type="submit" name="newOrder" value="Continue" id="tab1"/>
+            </form>
+        </div>
+    </div>
+    <div id="tabs-2">
+        <div>
+            <form id="form2">
+
+                <table>
+
+                    <tr>
+                        <td>First name:</td>
+                        <td><input type="text" th:value="${session.order.shipToFirstName}" name="shipToFirstName"/></td>
+                    </tr>
+                    <tr>
+                        <td>Last name:</td>
+                        <td><input type="text" th:value="${session.order.shipToLastName}" name="shipToLastName"/></td>
+                    </tr>
+                    <tr>
+                        <td>Address 1:</td>
+                        <td><input type="text" size="40" th:value="${session.order.shipAddress1}" name="shipAddress1"/></td>
+                    </tr>
+                    <tr>
+                        <td>Address 2:</td>
+                        <td><input type="text" size="40" th:value="${session.order.shipAddress2}" name="shipAddress2"/></td>
+                    </tr>
+                    <tr>
+                        <td>City:</td>
+                        <td><input type="text" th:value="${session.order.shipCity}" name="shipCity"/></td>
+                    </tr>
+                    <tr>
+                        <td>State:</td>
+                        <td><input type="text" size="4" th:value="${session.order.shipState}" name="shipState"/></td>
+                    </tr>
+                    <tr>
+                        <td>Zip:</td>
+                        <td><input type="text" size="10" th:value="${session.order.shipZip}" name="shipZip"/></td>
+                    </tr>
+                    <tr>
+                        <td>Country:</td>
+                        <td><input type="text" size="15" th:value="${session.order.shipCountry}"  name="shipCountry"/></td>
+                    </tr>
+
+
+                </table>
+
+                <input type="submit" name="newOrder" value="Continue" id="tab2"/>
+
+            </form>
+        </div>
+    </div>
+    <div id="tabs-3">
+        <table>
+            <tr>
+                <th align="center" colspan="2">Order #<span id="ordername" th:text="${session.order.orderId}"></span>
+                    <!--<span th:text="${#dates.format(session.order.orderDate, 'yyyy/MM/dd hh:mm:ss')}">-->
+                        <span th:text="${#dates.format(session.order.orderDate, 'yyyy/MM/dd')}">
+                    </span>
+                </th>
+            </tr>
+            <tr>
+                <th colspan="2">Payment Details</th>
+            </tr>
+            <tr>
+                <td>Card Type:</td>
+                <td id="tabs3cardType" th:text="${session.order.cardType}"></td>
+            </tr>
+            <tr>
+                <td>Card Number:</td>
+                <td id="tabs3creditCard" th:text="${session.order.creditCard}">* Fake
+                    number!</td>
+            </tr>
+            <tr>
+                <td>Expiry Date (MM/YYYY):</td>
+                <td id="tabs3expiryDate" th:text="${session.order.expiryDate}"></td>
+            </tr>
+            <tr>
+                <th colspan="2">Billing Address</th>
+            </tr>
+            <tr>
+                <td>First name:</td>
+                <td id="tabs3billToFirstName" th:text="${session.order.billToFirstName}"></td>
+            </tr>
+            <tr>
+                <td>Last name:</td>
+                <td id="tabs3billToLastName" th:text="${session.order.billToLastName}"></td>
+            </tr>
+            <tr>
+                <td>Address 1:</td>
+                <td id="tabs3billAddress1" th:text="${session.order.billAddress1}"></td>
+            </tr>
+            <tr>
+                <td>Address 2:</td>
+                <td id="tabs3billAddress2" th:text="${session.order.billAddress2}"></td>
+            </tr>
+            <tr>
+                <td>City:</td>
+                <td id="tabs3billCity" th:text="${session.order.billCity}"></td>
+            </tr>
+            <tr>
+                <td>State:</td>
+                <td id="tabs3billState" th:text="${session.order.billState}"></td>
+            </tr>
+            <tr>
+                <td>Zip:</td>
+                <td id="tabs3billZip" th:text="${session.order.billZip}"></td>
+            </tr>
+            <tr>
+                <td>Country:</td>
+                <td id="tabs3billCountry" th:text="${session.order.billZip}"></td>
+            </tr>
+            <tr>
+                <th colspan="2">Shipping Address</th>
+            </tr>
+            <tr>
+                <td>First name:</td>
+                <td id="tab3shipToFirstName" th:text="${session.order.shipToFirstName}"></td>
+            </tr>
+            <tr>
+                <td>Last name:</td>
+                <td id="tab3shipToLastName" th:text="${session.order.shipToLastName}"></td>
+            </tr>
+            <tr>
+                <td>Address 1:</td>
+                <td id="tab3shipAddress1" th:text="${session.order.shipAddress1}"></td>
+            </tr>
+            <tr>
+                <td>Address 2:</td>
+                <td id="tab3shipAddress2" th:text="${session.order.shipAddress2}"></td>
+            </tr>
+            <tr>
+                <td>City:</td>
+                <td id="tab3shipCity" th:text="${session.order.shipCity}"></td>
+            </tr>
+            <tr>
+                <td>State:</td>
+                <td id="tab3shipState" th:text="${session.order.shipState}"></td>
+            </tr>
+            <tr>
+                <td>Zip:</td>
+                <td id="tab3shipZip" th:text="${session.order.shipZip}"></td>
+            </tr>
+            <tr>
+                <td>Country:</td>
+                <td id="tab3shipCountry" th:text="${session.order.shipCountry}"></td>
+            </tr>
+            <tr>
+                <td>Courier:</td>
+                <td th:text="${session.order.courier}"></td>
+            </tr>
+            <tr>
+                <td colspan="2">Status: <span th:text="${session.order.status}"></span></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <table>
+                        <tr>
+                            <th>Item ID</th>
+                            <th>Description</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th>Total Cost</th>
+                        </tr>
+                        <tr th:each="lineItem : ${session.order.lineItems}">
+                            <td >
+                                <a th:href="@{'/catalog/item?itemId='+${lineItem.item.itemId}}" th:text="${lineItem.item.itemId}"></a>
+                            </td>
+                            <td th:text="${lineItem.item.attribute1} +' '+ ${lineItem.item.product.name}">
+                                <span th:if="${lineItem.item}==null"><i>{description unavailable}</i></span>
+                            </td>
+                            <td th:text="${lineItem.quantity}"></td>
+                            <td th:text="${#numbers.formatDecimal(lineItem.unitPrice, 1, 3)}"></td>
+                            <td th:text="${#numbers.formatDecimal(lineItem.total, 1, 3)}"></td>
+                        </tr>
+                        <tr>
+                            <th colspan="5">Total:
+                                <span th:text="${#numbers.formatDecimal(session.order.totalPrice, 1, 3)}"></span>
+                            </th>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+
+<!--确认的提示信息窗口-->
+<div id="confirmForm1" title="Confirm information">
+    <p>Are you sure the above information?If you confirm,a new order will be produced.</p>
+</div>
+<div id="confirmForm2" title="Confirm information">
+    <p>Are you sure the above information?If you confirm,a new order will be produced.</p>
+</div>
+<div id="confirmForm3" title="Confirm information">
+    <p>Are you sure the above information?</p>
+</div>
+
+<script src="../../js/jquery-3.3.1.min.js"></script>
+<script src="../../js/jquery-ui.min.js"></script>
+<script src="../../js/changeCode.js"></script>
+<script src="../../js/newOrder.js"></script>
+</body>
+</html>

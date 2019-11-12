@@ -1,0 +1,398 @@
+@import url(http://fonts.googleapis.com/css?family=Oswald:700,400);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+
+@font-face {
+    font-family: 'iconfont';
+    src: url('../iconfont/iconfont.eot'); /* IE9*/
+    src: url('../iconfont/iconfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */ url('../iconfont/iconfont.woff') format('woff'), /* chrome、firefox */ url('../iconfont/iconfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/ url('../iconfont/iconfont.svg#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+body {
+    background-color: #979797;
+    color: #fff;
+    font-family: 'Open Sans', arial, sans-serif;
+    margin: 0 auto 0 auto;
+}
+
+a {
+    text-decoration: none;
+}
+
+header {
+    width: 100%;
+    height: 100px;
+    border: 1px solid #000000;
+    display: block;
+}
+
+#logo {
+    background-image: url('../images/logo.png');
+    float: left;
+    width: 200px;
+    height: 100px;
+    border: 1px solid #000000;
+}
+
+#welcome {
+    float: left;
+    width: 180px;
+    height: 100px;
+    margin-left: 50px;
+    border: 1px solid #000000;
+}
+
+#welcome h2 {
+    margin: 0 auto 0 auto;
+    margin-top: 25px;
+}
+
+#search {
+    width: 600px;
+    height: 100px;
+    margin: 0 auto 0 auto;
+}
+
+#search .searchpart {
+    width: 550px;
+    height: 40px;
+    margin: 0 auto 0 auto;
+    margin-top: 25px;
+}
+
+#search .searchtext {
+    left: 0;
+    padding: 8px 44px 4px 8px;
+    width: 450px;
+    height: 40px;
+    border: 1px solid transparent;
+    line-height: 25px;
+    font-size: 14px;
+    margin: 0;
+    outline: none;
+    top: 0px;
+}
+
+#search .button {
+    -moz-border-radius: 0;
+    border-radius: 0;
+    left: 430px;
+    margin: 0;
+    top: 0;
+    width: 50px;
+    height: 40px;
+    line-height: 40px;
+    border: none;
+    background-color: #f10215;
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    outline: none;
+    position: absolute;
+    left: 945px;
+    top: 26px;
+}
+
+/*登录登出导航链接*/
+nav {
+    font-family: oswald, arial, sans-serif;
+    position: absolute;
+    left: 1050px;
+    top: 25px;
+    padding-top: 5px;
+    padding-left: 10px;
+    font-size: 1.4em;
+    text-align: right;
+    text-transform: uppercase;
+}
+
+nav a {
+    color: #666;
+    padding-left: 10px;
+}
+
+nav a:hover, a.current {
+    color: #d71a00;
+}
+
+#accountInformation {
+    position: absolute;
+    width: 120px;
+    height: auto;
+    left: 1160px;
+    top: 60px;
+    display: block;
+    z-index: 1001;
+    background-color: #666;
+}
+
+#accountInformation a {
+    color: #999;
+    display: block;
+    z-index: 1001;
+    margin-top: 5px;
+    font-family: oswald, arial, sans-serif;
+    font-size: 1.4em;
+    margin-left: 10px;
+}
+
+#accountInformation a:hover, a.current {
+    color: #d71a00;
+}
+
+#myaccount ul {
+    display: none;
+}
+
+.iconfont {
+    font-family: iconfont, sans-serif;
+    font-style: normal;
+    -webkit-text-stroke-width: .2px;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+#cartbt {
+    position: absolute;
+    right: 50px;
+    top: 25px;
+}
+
+#cartbt .cw-icon {
+    width: 188px;
+    height: 33px;
+    background-color: #fff;
+    text-align: center;
+    line-height: 33px;
+}
+
+.cw-icon {
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+    float: left;
+    border: 1px solid #e3e4e5;
+}
+
+#cartbt .ci-count {
+    position: absolute;
+    top: 5px;
+    left: 140px;
+    right: auto;
+    display: inline-block;
+    padding: 1px;
+    font-size: 12px;
+    line-height: 12px;
+    color: #fff;
+    background-color: #f10215;
+    -moz-border-radius: 7px;
+    font-style: normal;
+    font: 12px/1.5 Microsoft YaHei, tahoma, arial, Hiragino Sans GB, \\5b8b体, sans-serif;
+    border-radius: 7px;
+    min-width: 12px;
+    text-align: center;
+    margin: 0;
+}
+
+#cartbt .cw-icon .iconfont {
+    margin-right: 3px;
+    font-size: 16px;
+    color: #f10214;
+}
+
+.iconfont {
+    font-family: iconfont, sans-serif;
+    font-style: normal;
+    -webkit-text-stroke-width: .2px;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.cw-icon a {
+    color: #666;
+}
+
+div#content {
+    width: 100%;
+    height: 500px;
+    border: 1px solid #000000;
+}
+
+div#leftNav {
+    float: left;
+    width: 250px;
+    height: 400px;
+    border: 1px solid #000000;
+}
+
+/*SLIDER*/
+.slider {
+    max-width: 940px;
+    margin: 0px auto 30px auto;
+}
+
+.slide-viewer {
+    position: relative; /* needed for IE7 */
+    overflow: hidden;
+    height: 430px;
+}
+
+.slide-group {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.slide {
+    width: 100%;
+    height: 100%;
+    display: none;
+    position: absolute;
+}
+
+.slide:first-child {
+    display: block;
+}
+
+/*BUTTONS*/
+.slide-buttons {
+    text-align: center;
+}
+
+.slide-btn {
+    border: none;
+    background: none;
+    color: #000;
+    font-size: 200%;
+    line-height: 0.5em;
+}
+
+.slide-btn.active, .slide-btn:hover {
+    color: #ed8e6c;
+    cursor: pointer;
+}
+
+footer {
+    background-color: #8e8ab7;
+    width: 100%;
+    height: 100px;
+    border: 1px solid #000000;
+}
+
+div#foot {
+    display: block;
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+    z-index: 1000;
+    font-size: 12px;
+    color: hsla(0, 0%, 100%, .4);
+}
+
+/*折叠板样式*/
+
+.clicked {
+    background-color: #666666;
+}
+
+#menu1, #menu2, #menu3, #menu4, #menu5 {
+    visibility: hidden;
+}
+
+table {
+    margin: 0 auto;
+    width: 150px;
+}
+
+table#rates {
+    width: 150px;
+}
+
+th, td {
+    border-radius: 3px;
+    color: #333;
+    padding: 7px 10px 5px 10px;
+    min-width: 9em;
+    text-align: left;
+}
+
+th {
+    background-color: #d7d7d7;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+td {
+    background-color: #fff;
+}
+
+table.sortable th:hover {
+    cursor: pointer;
+}
+
+th.ascending, th.descending, table.sortable th:hover {
+    background-color: #666666;
+    color: #fff;
+}
+
+/* Arrows for table sorting */
+th.ascending:after {
+    font-size: 60%;
+    content: '\25B2';
+    float: left;
+    padding: 4px 5px 0 0;
+}
+
+th.descending:after {
+    font-size: 60%;
+    content: '\25BC';
+    float: left;
+    padding: 4px 5px 0 0;
+}
+
+#inform {
+    width: 400px;
+    height: auto;
+    border: 1px solid #e1e3e2;
+    z-index: 10000;
+    background-color: #E0E5E5;
+    overflow: auto; /* 自动添加滚动条 */
+    box-shadow: 0px 0px 10px #000; /* 外阴影 */
+    display: none; /* 默认隐藏 */
+    position: absolute;
+}
+
+/*登录页面*/
+#checkImg {
+    margin-top: 15px;
+}
+
+#changeCodeImage {
+    color: #8e8ab7;
+}
+
+#changeCodeImage:hover {
+    color: #666666;
+}
+
+/*管理员登录入口*/
+#adminLogin a {
+    position: absolute;
+    left: 40%;
+    top: 30px;
+    color: #8e8ab7;
+}
+
+#adminLogin a:hover {
+    position: absolute;
+    left: 40%;
+    top: 30px;
+    color: #666666;
+}
+

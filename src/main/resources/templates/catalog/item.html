@@ -1,0 +1,51 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Item</title>
+    <link rel="stylesheet" href="../../css/cart.css" />
+
+</head>
+<body>
+<header>
+    <h1>CreativeFolk</h1>
+</header>
+
+<div id="BackLink">
+    <a th:href="@{'/catalog/product?productId='+${product.productId}}" th:text="'Return to '+${product.productId}"/> </a>
+</div>
+
+<div id="Catalog">
+
+    <table>
+        <tr>
+            <td th:utext="${product.description}"></td>
+        </tr>
+        <tr>
+            <td th:text="${item.itemId}"></td>
+        </tr>
+        <tr>
+            <td th:text="${item.attribute1}+' '+${product.categoryId}"></td>
+        </tr>
+        <tr>
+            <td th:text="${product.name}"></td>
+        </tr>
+        <tr>
+            <td th:if="${item.quantity} le '0'">Back ordered.</td>
+            <td th:if="${item.quantity} gt '0'" th:text="${item.quantity}+' in stock'"></td>
+        </tr>
+        <tr>
+            <td th:text="'$'+${item.listPrice}"></td>
+        </tr>
+
+        <tr>
+            <td>
+<!--                <a href="addItemToCart?workingItemId=<s:property value="#session.item.itemId"/>&token=<s:property value="#session.token"/>" class="Button">Add to Cart</a>-->
+                <a th:href="@{'/cart/addCart?workingItemId='+${item.itemId}}">Add to Cart</a>
+            </td>
+        </tr>
+    </table>
+
+</div>
+</body>
+</html>

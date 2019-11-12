@@ -1,0 +1,55 @@
+@import url(http://fonts.googleapis.com/css?family=Karla:400,700);
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f1f1f1;
+    font-family: 'Karla', sans-serif;
+    color: #333;
+}
+
+/* Header */
+header {
+    background-color: #333333;
+    margin: 0 0 40px 0;
+    padding: 10px 0 0 0;
+    min-height: 50px;
+    text-align: center;
+}
+
+h1 {
+    background-image: url('../images/creative-folk.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    margin: 10px auto 5px auto;
+    width: 516px;
+    height: 21px;
+    text-align: center;
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.about {
+    width: 780px;
+    margin: 0 auto 40px auto;
+}
+
+.about:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.about h2 {
+    text-align: left;
+    float: left;
+}
+
+#BackLink {
+    padding: 1ex;
+    float: right;
+    border-width: .1ex 0ex .1ex 0px;
+    border-style: solid;
+    border-color: #000;
+}

@@ -1,0 +1,38 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Category</title>
+    <link rel="stylesheet" href="../../css/top.css" />
+    <link rel="stylesheet" href="../../css/bottom.css" />
+    <link rel="stylesheet" href="../../css/table.css" />
+</head>
+<body>
+<header>
+    <h1>CreativeFolk</h1>
+</header>
+<div id="BackLink">
+    <a href="/catalog/main">Return to Main Menu</a>
+</div>
+<div class="about">
+    <h2>My Orders</h2>
+</div>
+
+<table>
+    <tr>
+        <th>Order ID</th>
+        <th>Date</th>
+        <th>Total Price</th>
+    </tr>
+
+    <tr th:each="order : ${orderList}">
+        <td>
+            <a th:href="@{'/order/order?orderId='+${order.orderId}}"
+               th:text="${order.orderId}">orderId</a>
+        </td>
+        <td th:text="${#dates.format(order.orderDate, 'yyyy/MM/dd hh:mm:ss')}"></td>
+        <td th:text="${#numbers.formatDecimal(order.totalPrice, 2, 3)}"></td>
+    </tr>
+</table>
+</body>
+</html>
+
+

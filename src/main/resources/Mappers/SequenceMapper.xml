@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.csu.mypetstore_springboot.persistence.SequenceMapper">
+    <select id="getSequence" parameterType="org.csu.mypetstore_springboot.domain.Sequence"
+            resultType="org.csu.mypetstore_springboot.domain.Sequence">
+        SELECT name, nextid FROM SEQUENCE WHERE NAME = #{name}
+    </select>
+    <update id="updateSequence" parameterType="org.csu.mypetstore_springboot.domain.Sequence">
+        UPDATE SEQUENCE SET NEXTID = #{nextId} WHERE NAME = #{name}
+    </update>
+</mapper>

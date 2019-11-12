@@ -1,0 +1,232 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+    <meta name="generator" content="HTML Tidy for Linux/x86 (vers 1st November 2002), see www.w3.org"/>
+    <title>MyPetStore</title>
+    <meta content="text/html; charset=windows-1252"
+          http-equiv="Content-Type"/>
+    <meta http-equiv="Cache-Control" content="max-age=0"/>
+    <meta http-equiv="Cache-Control" content="no-cache"/>
+    <meta http-equiv="expires" content="0"/>
+    <meta http-equiv="Expires" content="Tue, 01 Jan 1980 1:00:00 GMT"/>
+    <meta http-equiv="Pragma" content="no-cache"/>
+    <link rel="stylesheet" href="/css/jquery-ui-1.12.1.custom/jquery-ui.min.css"/>
+    <link rel="styleSheet" href="/css/main.css" type="text/css" media="screen"/>
+    <link rel="stylesheet" href="/css/doubleWindow.css"/>
+</head>
+<body>
+<header>
+    <div id="logo"></div>
+
+    <div id="welcome">
+        <h2 th:if="${session.account}" th:text="'welcome '+ ${session.account.username}">
+        </h2>
+        <h2 th:if="${session.account} == null">
+            welcome you!
+        </h2>
+    </div>
+
+    <div id="search">
+        <div class="searchpart">
+            <form action="/catalog/searchProducts" method="post">
+                <input type="text" autocomplete="off" id="searchInput" name="searchInput" class="searchtext"/>
+                <button class="button" type="submit"><i class="iconfont">&#xe8bb;</i></button>
+            </form>
+        </div>
+    </div>
+
+    <nav>
+        <!--<s:if test="#session.account == null">-->
+        <!--<a id="signIn" href="#"><s:text name="signin"/></a>-->
+        <!--<a href="newAccountForm"><s:text name="register"/></a>-->
+        <!--</s:if>-->
+        <!--<s:if test="#session.account != null">-->
+        <!--<a href="signoff"><s:text name="SignOut"/></a>-->
+        <!--<a href="#" id="myaccount"><s:text name="MyAccount"/></a>-->
+        <!--</s:if>-->
+
+        <a id="signIn" th:if="${session.account} == null" th:href="@{'#'}" th:text="SignIn"></a>
+        <a href="/account/newAccountForm"  th:if="${session.account} == null" th:text="register"></a>
+        <a href="/account/signOut" th:if="${session.account} != null" th:text="SignOut"></a>
+        <a th:href="@{'#'}" th:if="${session.account} != null" th:text="MyAccount" id="myaccount"></a>
+    </nav>
+
+
+    <div id="cartbt" class="dorpdown">
+        <div class="cw-icon">
+            <i id="shopping-amount" class="ci-count" th:text="${session.cartItemNumber} ? ${session.cartItemNumber} : 0"></i>
+            <i class="iconfont">&#xe896;</i>
+            <a href="/cart/viewCart" th:text="MyCart"></a>
+        </div>
+    </div>
+
+</header>
+
+<div id="content">
+    <section>
+        <div id="leftNav">
+            <h3 id="fish">Fish</h3>
+            <ul id="menu1">
+                <li th:each="product : ${fishes}">
+                    <div><a th:href="@{'/catalog/product?productId=' + ${product.productId}}"
+                            th:text="${product.productId}"></a></div>
+                    <ul th:each="item : ${itemlists[product.productId]}">
+                        <li>
+                            <div><a th:href="@{'/catalog/item?itemId=' + ${item.itemId}}" th:text="${item.itemId}"></a></div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <h3 id="dog">Dogs</h3>
+            <ul id="menu2">
+                <li th:each="product : ${dogs}">
+                    <div><a th:href="@{'/catalog/product?productId=' + ${product.productId}}"
+                            th:text="${product.productId}"></a></div>
+                    <ul th:each="item : ${itemlists[product.productId]}">
+                        <li>
+                            <div><a th:href="@{'/catalog/item?itemId=' + ${item.itemId}}" th:text="${item.itemId}"></a></div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h3 id="cat">Cats</h3>
+            <ul id="menu3">
+                <li th:each="product : ${cats}">
+                    <div><a th:href="@{'/catalog/product?productId=' + ${product.productId}}"
+                            th:text="${product.productId}"></a></div>
+                    <ul th:each="item : ${itemlists[product.productId]}">
+                        <li>
+                            <div><a th:href="@{'/catalog/item?itemId=' + ${item.itemId}}" th:text="${item.itemId}"></a></div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <h3 id="reptiles">Reptiles</h3>
+            <ul id="menu4">
+                <li th:each="product : ${reptiles}">
+                    <div><a th:href="@{'/catalog/product?productId=' + ${product.productId}}"
+                            th:text="${product.productId}"></a></div>
+                    <ul th:each="item : ${itemlists[product.productId]}">
+                        <li>
+                            <div><a th:href="@{'/catalog/item?itemId=' + ${item.itemId}}" th:text="${item.itemId}"></a></div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <h3 id="bird">Birds</h3>
+            <ul id="menu5">
+                <li th:each="product : ${birds}">
+                    <div><a th:href="@{'/catalog/product?productId=' + ${product.productId}}"
+                            th:text="${product.productId}"></a></div>
+                    <ul th:each="item : ${itemlists[product.productId]}">
+                        <li>
+                            <div><a th:href="@{'/catalog/item?itemId=' + ${item.itemId}}" th:text="${item.itemId}"></a></div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+
+        <!--<%&#45;&#45;滚动图片&#45;&#45;%>-->
+        <div class="slider">
+            <div class="slide-viewer">
+                <div class="slide-group">
+                    <div class="slide slide-1">
+                        <a href="/catalog/category?categoryId=FISH"><img src="/images/fish.jpg" alt="No two are the same"
+                                                                    id="aFISH"/></a>
+                    </div>
+                    <div class="slide slide-2">
+                        <a href="/catalog/category?categoryId=DOGS"><img src="/images/dog.jpg" alt="Monsieur Mints"
+                                                                    id="aDOGS"/></a>
+                    </div>
+                    <div class="slide slide-3">
+                        <a href="/catalog/category?categoryId=CATS"><img src="/images/cat.jpg" alt="The Flower Series"
+                                                                    id="aCATS"/></a>
+                    </div>
+                    <div class="slide slide-4">
+                        <a href="/catalog/category?categoryId=REPTILES"><img src="/images/reptile.jpg" alt="Salt o' The Sea"
+                                                                        id="aREPTILES"/></a>
+                    </div>
+                    <div class="slide slide-5">
+                        <a href="/catalog/category?categoryId=BIRDS"><img src="/images/bird.gif" alt="Salt o' The Sea"
+                                                                     id="aBIRDS"/></a>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-buttons"></div>
+        </div>
+
+    </section>
+
+    <!--双模式窗口-->
+    <div id="dialog-form" title="User login">
+        <!--<p class="validateTips" th:text="login.remind"></p>-->
+        <p class="validateTips" ></p>
+        <form id="login">
+            <fieldset>
+                <label for="username" th:text="username"></label>
+                <input type="text" name="username" id="username" value="j2ee"
+                       class="text ui-widget-content ui-corner-all">
+                <!--<label for="email">Email</label>
+                <input type="text" name="email" id="email" value="jane@smith.com" class="text ui-widget-content ui-corner-all">-->
+                <label for="password" th:text="password"></label>
+                <input type="password" name="password" id="password" value="j2ee"
+                       class="text ui-widget-content ui-corner-all">
+                <label th:text="checkCode"></label>
+                <input type="text" name="checkCode"/><img src="/checkCode" id="checkImg"
+                                                          onClick="this.src = this.src+'?'+Math.random()" width="80"
+                                                          height="30">
+                看不清？<a href="#" onClick="changeCodeImage()" id="changeCodeImage">换一个</a>
+                <!-- Allow form submission with keyboard without duplicating the dialog button  -->
+                <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+            </fieldset>
+        </form>
+    </div>
+
+    <!--<%&#45;&#45;&lt;%&ndash;悬浮显示信息框&ndash;%&gt;&#45;&#45;%>-->
+    <!--<%&#45;&#45;<div id="inform">&#45;&#45;%>-->
+    <!--<%&#45;&#45;<table>&#45;&#45;%>-->
+    <!--<%&#45;&#45;<tr>&#45;&#45;%>-->
+    <!--<%&#45;&#45;<td width="50px">Product</td>&#45;&#45;%>-->
+    <!--<%&#45;&#45;<td id="productId"></td>&#45;&#45;%>-->
+    <!--<%&#45;&#45;</tr>&#45;&#45;%>-->
+    <!--<%&#45;&#45;<tr>&#45;&#45;%>-->
+    <!--<%&#45;&#45;<td width="50px">Item</td>&#45;&#45;%>-->
+    <!--<%&#45;&#45;<td id="itemId"></td>&#45;&#45;%>-->
+    <!--<%&#45;&#45;</tr>&#45;&#45;%>-->
+    <!--<%&#45;&#45;</table>&#45;&#45;%>-->
+    <!--<%&#45;&#45;</div>&#45;&#45;%>-->
+
+    <!--<%&#45;&#45;悬浮内容框Myaccount&#45;&#45;%>-->
+    <div id="accountInformation">
+        <a href="/account/editAccountForm">Information</a>
+        <a href="/order/oderList">Orders</a>
+    </div>
+
+    <!--<%&#45;&#45;登录成功的信息提示&#45;&#45;%>-->
+    <div id="mainLoginSuccess" title="Login Information">
+        <p >Login succeeded,hope you enjoy it!</p>
+    </div>
+
+    <!--<%&#45;&#45;管理员登录入口窗口&#45;&#45;%>-->
+    <div id="adminLogin" title="Administrator Exit">
+        <a href="signon">请点击登录</a>
+    </div>
+</div>
+
+
+<footer>
+    <div id="foot">Central South University
+        <a href="/catalog/main?request_locale=zh_CN" style="size: 14px " th:text="chinese"></a>
+        <a href="/catalog/main?request_locale=en_US" style="size: 14px" th:text="english"></a>
+    </div>
+</footer>
+<script src="/js/jquery-3.3.1.min.js"></script>
+<script src="/js/jquery-ui.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/autoComplete.js"></script>
+<script src="/js/changeCode.js"></script>
+<script src="/js/cart.js"></script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Edit Account Form</title>
+    <link rel="stylesheet" href="../../css/jquery-ui-1.12.1.custom/jquery-ui.min.css">
+    <link rel="stylesheet" href="../../css/form.css">
+
+</head>
+<body>
+<header>
+    <h1>CreativeFolk</h1>
+</header>
+
+<div id="BackLink">
+    <a href="/catalog/main">Return to Main Menu</a>
+</div>
+<form action="/account/editAccount" method="post">
+    <!--<s:token/>-->
+    <div id="tabs">
+        <ul>
+            <li><a href="#tabs-1">User Information</a></li>
+            <li><a href="#tabs-2">Account Information</a></li>
+            <li><a href="#tabs-3">Profile Information</a></li>
+        </ul>
+        <div id="tabs-1">
+            <div class="name">
+                <label for="username" class="required">Name:</label>
+                <input type="text" placeholder="Enter your name" name="username" id="username" required title="Please enter your username" onblur="usernameIsExist1()">
+            </div>
+
+            <div id="usernameMsg1" style="padding-top: 0px">
+            </div>
+            <div class="password">
+                <label for="password" class="required">Password:</label>
+                <input type="password" name="password" id="password" required>
+            </div>
+            <div class="password">
+                <label for="repeatedPassword" class="required">Confirm password:</label>
+                <input type="password" name="repeatedPassword" id="repeatedPassword" required oninput="codeV()">
+            </div>
+            </fieldset>
+        </div>
+        <div id="tabs-2">
+            <label class="required">First name:</label>
+            <input type="text" name="firstname" th:value="${session.account}? ${session.account.firstName} : ''"/>
+
+            <label class="required">Last name:</label>
+            <input type="text" name="lastname" th:value="${session.account}? ${session.account.lastName}: ''"/>
+
+            <label class="required">Email:</label>
+            <input size="40" type="email" name="email" th:value="${session.account}? ${session.account.email} :''" onblur="emailIsLegal()"/>
+
+            <div id="emailMsg" class="error">
+            </div>
+
+            <label  class="required">Phone:</label>
+            <input type="text" name="phone" th:value="${session.account}? ${session.account.phone} : ''" onblur="phoneIsLegal()"/>
+
+            <div id="phoneMsg" class="error">
+
+            </div>
+
+            <label  class="required">Address1:</label>
+            <input size="40" type="text" name="address1" th:value="${session.account}? ${session.account.address1} : ''"/>
+
+            <label class="required">Address2:</label>
+            <input size="40" type="text" name="address2" th:value="${session.account}? ${session.account.address2} :''"/>
+
+            <label class="required">City:</label>
+            <input type="text" name="city" th:value="${session.account}? ${session.account.city}:''"/>
+
+            <label  class="required">State:</label>
+            <input size="4" type="text" name="state" th:value="${session.account}? ${session.account.state}:''"/>
+
+            <label class="required">Zip:</label>
+            <input size="10" type="text" name="zip" th:value="${session.account}? ${session.account.zip}:''"/>
+
+            <label class="required">Country:</label>
+            <input size="15" type="text" name="country" th:value="${session.account}? ${session.account.country}:''" />
+
+            </fieldset>
+        </div>
+        <div id="tabs-3">
+            <label >Language Preference:</label>
+            <select name="languagePreference">
+
+                <option th:value="${session.account.languagePreference}" th:text="${session.account.languagePreference}"/>
+                <option th:each="language : ${languages}" th:if="${language} ne ${session.account.languagePreference}" th:value="${language}" th:text="${language}"></option>
+            </select>
+
+            <label >Favourite Category:</label>
+            <select name="favouriteCategoryId">
+
+                <option th:value="${session.account.favouriteCategoryId}" th:text="${session.account.favouriteCategoryId}"/>
+                <option th:each="category : ${categories}" th:if="${category} ne ${session.account.favouriteCategoryId}" th:value="${category}" th:text="${category}" th:selected="${category}"></option>
+            </select>
+
+            <label >Enable MyList</label>
+
+            <input th:if="${session.account.listOption}" name="listOption" type="checkbox" value="true" checked/>
+            <input th:if="${not session.account.listOption}" name="listOption" type="checkbox" value="false" checked/>
+
+            <label >Enable MyBanner</label>
+
+            <input th:if="${session.account.bannerOption}" name="bannerOption" type="checkbox" value="true" checked/>
+            <input th:if="${not session.account.bannerOption}" name="bannerOption" type="checkbox" value="false" checked/>
+            <input type="submit" name="newAccount" value="Save Account Information"/>
+        </div>
+    </div>
+
+</form>
+
+<script src="../../js/jquery-3.3.1.min.js"></script>
+<script src="../../js/jquery-ui.min.js"></script>
+<script src="../../js/changeCode.js"></script>
+<script src="../../js/newAccount.js"></script>
+<script src="../../js/changeCode.js"></script>
+<script src="../../js/usernameIsExist.js"></script>
+<script src="../../js/codeV.js"></script>
+</body>
+</html>

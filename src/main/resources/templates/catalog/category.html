@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Category</title>
+    <link rel="stylesheet" href="../../css/cart.css"/>
+
+</head>
+<body>
+<header>
+    <h1>CreativeFolk</h1>
+</header>
+<div id="BackLink">
+    <a href="/catalog/main">Return to Main Menu</a>
+</div>
+
+<div id="Catalog">
+
+    <h2 th:text="${category.name}">
+    </h2>
+
+
+    <table>
+        <thead>
+            <tr>
+                <th>Product ID</th>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody th:each="product : ${productList}">
+            <tr>
+                <td>
+                    <a  th:href="@{'/catalog/product?productId=' + ${product.productId}}"
+                        th:text="${product.productId}">
+                    </a>
+                </td>
+                <td th:text="${product.name}">
+                </td>
+            </tr>
+        </tbody>
+
+    </table>
+
+</div>
+</body>
+</html>

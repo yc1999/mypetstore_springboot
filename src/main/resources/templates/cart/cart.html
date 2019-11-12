@@ -1,0 +1,92 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cart</title>
+    <link rel="stylesheet" href="../../css/cart.css" />
+    <link rel="stylesheet" href="../../css/jquery-ui-1.12.1.custom/jquery-ui.min.css" />
+    <link rel="stylesheet" href="../../css/doubleWindow.css"/>
+</head>
+<body>
+<header>
+    <h1>CreativeFolk</h1>
+</header>
+<div id="BackLink">
+    <a href="/catalog/main">Return to Main Menu</a>
+</div>
+
+<div class="about">
+    <h2>My Cart</h2>
+    <div class="bio">
+        <img src="../../images/camille.jpg" alt="Camille's profile picture" />
+        <h4>Camille Berger</h4>
+        <div class="location">Paris, France</div>
+    </div>
+</div>
+
+
+<table class="sortable">
+    <thead>
+    <tr>
+        <th>Item ID</th>
+        <th>Product ID</th>
+        <th>Description</th>
+        <th>In Stock</th>
+        <th>Quantity</th>
+        <th>List Price</th>
+        <th>Total Cost</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!--<s:if test="#session.cart.numberOfItems == 0">-->
+        <tr th:if="${session.cart.numberOfItems} == 0">
+            <td  colspan="7" id="emptyMsg"><b>Your cart is empty.</b></td>
+        </tr>
+    <!--</s:if>-->
+
+    <!--<s:iterator value="#session.cart.cartItems">-->
+        <tr title="By clicking, you can remove items!" th:each="cartItem : ${session.cart.cartItemList}">
+            <td >
+                <a th:href="@{'/catalog/item?itemId='+${cartItem.item.itemId}}" th:text="${cartItem.item.itemId}"/>
+            </td>
+            <td th:text="${cartItem.item.product.productId}"></td>
+            <td th:text="${cartItem.item.attribute1}+' '+ ${cartItem.item.product.name}"></td>
+            <td th:text=" ${cartItem.inStock}"></td>
+            <td class="quantity"><input type="text" th:name="${cartItem.item.itemId}" th:value="${cartItem.quantity}" th:id="${cartItem.item.itemId}"/></td>
+            <!--<%&#45;&#45;<td class="quantity"><input type="number" name="${cartItem.item.itemId}" min="1" value="${cartItem.quantity}"/></td>&#45;&#45;%>-->
+            <td th:text="'$'+ ${cartItem.item.listPrice}"></td>
+            <td th:text="'$'+ ${cartItem.total}"></td>
+        </tr>
+    <!--</s:iterator>-->
+
+    </tbody>
+    <tfoot>
+    <tr>
+        <td colspan="7" th:text="'Sub Total: $'+ ${session.cart.subTotal}">Sub Total: </td>
+    </tr>
+    </tfoot>
+</table>
+<div id="operation">
+    <div id="newItemButton"><button href="#" id="showForm">new item or check out</button></div>
+    <form id="newItemForm" action="/order/newOrderForm" method="get">
+        <input type="text" id="itemDescription" placeholder="Please Add ItemId" autocomplete="off"/>
+        <input type="button" id="add" value="add" />
+        <input type="submit" id="checkout" value="checkout">
+    </form>
+    <p class="errorText"></p>    <!--错误信息-->
+</div>
+<!--未登录的信息提示-->
+<div id="loginFirst" title="Remind Information">
+    <p>&nbsp;&nbsp;You must login in before you check out！</p>
+</div>
+
+<!--确认删除的信息提示-->
+<div id="confirmRemove" title="Confirm Remove Information">
+    <p>&nbsp;&nbsp;Are you sure to remove?</p>
+</div>
+
+<script src="../../js/jquery-3.3.1.min.js"></script>
+<script src="../../js/jquery-ui.min.js"></script>
+<script src="../../js/cart.js"></script>
+</body>
+</html>
